@@ -1,34 +1,26 @@
-// User.java
 package com.bankpulse.authservice.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "users")
 public class User {
-
+  
     @Id
-    private String id; // UUID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(unique = true, nullable = false)
-    private String email;
-
-    @Column(unique = true, nullable = false)
-    private String phoneNumber;
-
-    private String name;
-    private String address;
-    private String sex;
-    private String nominee;
-    private String occupation;
+    private String username;
 
     @Column(nullable = false)
     private String password;
 
-    private boolean enabled;  // for email verification/activation
+    @Column(nullable = false)
+    private String role; // e.g., ROLE_USER, ROLE_ADMIN
 }
